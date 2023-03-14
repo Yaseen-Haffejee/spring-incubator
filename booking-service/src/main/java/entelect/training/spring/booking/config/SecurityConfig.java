@@ -1,4 +1,4 @@
-package entelect.training.incubator.spring.customer.config;
+package entelect.training.spring.booking.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     /**
      * Disclaimer! In a production system you will never store your credentials in either clear text or in the code.
      * It is done here so that development is both easy to understand and change.
@@ -41,5 +40,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
-
 }

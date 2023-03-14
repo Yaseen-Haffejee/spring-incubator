@@ -59,7 +59,7 @@ public class CustomersController {
         }
 
         LOGGER.trace("Customer not found");
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>("Customer not found",HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/search")
