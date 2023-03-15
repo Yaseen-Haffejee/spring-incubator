@@ -1,19 +1,18 @@
 package entelect.training.spring.booking.config;
 
+import entelect.training.spring.booking.client.LoyaltyClient;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.client.RestTemplate;
-
 @Configuration
 public class ApplicationConfiguration {
-//    @Autowired
-//    CloseableHttpClient httpClient;
+
 
     @Bean
     public CloseableHttpClient httpClient(){
