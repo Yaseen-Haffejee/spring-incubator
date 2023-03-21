@@ -1,7 +1,10 @@
 package entelect.training.incubator.spring.customer.controller;
 
+import entelect.training.incubator.spring.customer.exceptions.CustomerNotFoundException;
+import entelect.training.incubator.spring.customer.exceptions.IncorrectPasswordException;
 import entelect.training.incubator.spring.customer.model.Customer;
 import entelect.training.incubator.spring.customer.model.CustomerSearchRequest;
+import entelect.training.incubator.spring.customer.model.LogIn;
 import entelect.training.incubator.spring.customer.model.SearchType;
 import entelect.training.incubator.spring.customer.service.CustomersService;
 import org.slf4j.Logger;
@@ -14,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("customers")
+@CrossOrigin(origins ={"http://localhost:4200"})
 public class CustomersController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(CustomersController.class);
@@ -25,6 +29,7 @@ public class CustomersController {
     }
 
     @PostMapping
+    @CrossOrigin(origins ={"http://localhost:4200"})
     public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
         LOGGER.info("Processing customer creation request for customer={}", customer);
 
@@ -74,5 +79,23 @@ public class CustomersController {
 
         LOGGER.trace("Customer not found");
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/login")
+    @CrossOrigin(origins ={"http://localhost:4200"})
+    public ResponseEntity loginCustomer(@RequestBody LogIn details){
+        try{
+            Customer customer = customersService.verifyCustomer(details.getUsername(), details.getPassword());
+            return ResponseEntity.ok(customer);
+        }
+        catch (Exception exception){
+            if(exception instanceof CustomerNotFoundException){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+            }
+            if(exception instanceof IncorrectPasswordException){
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+            }
+        }
+        return null;
     }
 }

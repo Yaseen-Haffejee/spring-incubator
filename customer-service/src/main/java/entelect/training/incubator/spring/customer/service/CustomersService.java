@@ -1,5 +1,7 @@
 package entelect.training.incubator.spring.customer.service;
 
+import entelect.training.incubator.spring.customer.exceptions.CustomerNotFoundException;
+import entelect.training.incubator.spring.customer.exceptions.IncorrectPasswordException;
 import entelect.training.incubator.spring.customer.model.Customer;
 import entelect.training.incubator.spring.customer.model.CustomerSearchRequest;
 import entelect.training.incubator.spring.customer.model.SearchType;
@@ -46,5 +48,22 @@ public class CustomersService {
         Optional<Customer> customerOptional = searchStrategies.get(searchRequest.getSearchType()).get();
 
         return customerOptional.orElse(null);
+    }
+
+    public Customer verifyCustomer(String username,String incomingPassword){
+        Optional<Customer> customer = customerRepository.findByUsername(username);
+
+        if(!customer.isPresent()){
+            throw new CustomerNotFoundException(String.format("Customer with username %s not found",username));
+        }
+        else{
+            if(customer.get().getPassword().equals(incomingPassword)){
+                return customer.get();
+            }
+            else{
+                throw new IncorrectPasswordException("Incorrect password entered");
+            }
+        }
+
     }
 }

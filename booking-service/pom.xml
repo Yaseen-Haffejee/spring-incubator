@@ -75,7 +75,16 @@
             <scope>test</scope>
         </dependency>
 
-
+        <!--AMQP-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.3</version>
+        </dependency>
     </dependencies>
 
     <build>

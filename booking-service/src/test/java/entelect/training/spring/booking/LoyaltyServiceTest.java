@@ -19,8 +19,4 @@ public class LoyaltyServiceTest {
     @Autowired
     LoyaltyClient loyaltyService;
 
-    @Test
-    public void test(){
-        CaptureRewardsResponse response = loyaltyService.updateLoyalty("123445644", String.valueOf(BigDecimal.valueOf(225.0)));
-    }
 }

@@ -33,11 +33,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable() // !!! Disclaimer: NEVER DISABLE CSRF IN PRODUCTION !!!
+        http.csrf().disable() // !!! Disclaimer: NEVER DISABLE CSRF IN PRODUCTION !!
+                .cors().and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/flights/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/flights/**").permitAll()
-//                .anyRequest().denyAll()
+                .anyRequest().denyAll()
                 .and()
                 .httpBasic();
     }

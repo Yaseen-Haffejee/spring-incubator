@@ -87,4 +87,12 @@ public class FlightsService {
 
         return searchStrategies.get(searchRequest.getSearchType()).get();
     }
+
+    public Flight updateAvailableSeats(Flight updatedSeats){
+        Flight toUpdate = flightRepository.findById(updatedSeats.getId()).get();
+
+        toUpdate.setSeatsAvailable(updatedSeats.getSeatsAvailable());
+        flightRepository.save(toUpdate);
+        return toUpdate;
+    }
 }

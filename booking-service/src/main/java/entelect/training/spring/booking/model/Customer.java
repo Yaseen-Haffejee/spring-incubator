@@ -1,4 +1,4 @@
-package entelect.training.incubator.spring.customer.model;
+package entelect.training.spring.booking.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +10,8 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
-@Entity
 public class Customer {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     private String username;
@@ -28,6 +25,4 @@ public class Customer {
     private String email;
     
     private String phoneNumber;
-
-    private String password;
 }

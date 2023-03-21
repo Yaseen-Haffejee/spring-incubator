@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("bookings")
+@CrossOrigin(origins ={"http://localhost:4200"})
 public class BookingsController {
     private final Logger LOGGER = LoggerFactory.getLogger(BookingsController.class);
 
@@ -25,6 +26,7 @@ public class BookingsController {
     }
 
     @PostMapping
+    @CrossOrigin(origins ={"http://localhost:4200"})
     public ResponseEntity makeBooking(@RequestBody CreateBooking booking) {
         LOGGER.info("Creating a booking");
         try {
@@ -41,6 +43,7 @@ public class BookingsController {
     }
 
     @GetMapping("{id}")
+    @CrossOrigin(origins ={"http://localhost:4200"})
     public ResponseEntity getBookingById(@PathVariable Integer id) {
         LOGGER.info("Looking for booking with Id {}", id);
         try {
@@ -53,6 +56,7 @@ public class BookingsController {
     }
 
     @PostMapping("/search")
+    @CrossOrigin(origins ={"http://localhost:4200"})
     public ResponseEntity getBookings(@RequestBody BookingSearch search) {
         //search by reference string
         if (search.getReference() != null) {
