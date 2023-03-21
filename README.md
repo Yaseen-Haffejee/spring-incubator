@@ -19,3 +19,7 @@ Check the ```SecurityConfig.java``` classes for credentials.
 
 ## Some notes
 * Always <b>build</b> your project before pushing. There is no build server to check whether your code works
+
+## message-queue-service
+- Create a module called message-queue-service
+- Install ActiveMQ in this directory in order for the booking service to work
